@@ -36,19 +36,17 @@ For compute-intensive or long-iteration code, some bugs surface only after many 
 
 ## Naming Rules
 
-| Object Type   | Style                    | Semantics                     | Examples                                         |
-| ------------- | ------------------------ | ---------------------------- | ------------------------------------------------ |
-| Class         | `CamelCase`              | Noun / noun phrase            | `DataLoader`, `ReplayBuffer`, `PPOTrainer`       |
-| Function/Method | `snake_case`           | Verb or verb phrase           | `load_data`, `compute_loss`, `save_checkpoint`   |
-| Variable      | lower_snake_case         | Noun expressing data meaning  | `batch_size`, `episode_reward`                   |
-| Constant      | UPPER_SNAKE_CASE         | Module-level readonly         | `MAX_STEPS`, `EPSILON`, `DEVICE`                 |
-| Boolean       | `is/has/should/can_*`    | State or condition            | `is_valid`, `has_grad`, `should_stop`            |
-| Module/Package| lower_snake_case         | Function/domain               | `models`, `datasets`, `optim`                    |
-| File name     | lower_snake_case         | Matches main purpose          | `train.py`, `eval.py`                            |
-
-                  |
-| Temp variable | Meaningful abbreviation  | Avoid `tmp1/tmp2`             | `buf`, `acc`, `grad_norm`                        |
-| Loop counter  | Conventional             | Short but clear               | `i`, `idx`, `step`, `epoch`                      |
+| Object Type | Style | Semantics | Examples |
+| --- | --- | --- | --- |
+| Class | `CamelCase` | Noun / noun phrase | `DataLoader`, `ReplayBuffer`, `PPOTrainer` |
+| Function/Method | `snake_case` | Verb or verb phrase | `load_data`, `compute_loss`, `save_checkpoint` |
+| Variable | lower_snake_case | Noun expressing data meaning | `batch_size`, `episode_reward` |
+| Constant | UPPER_SNAKE_CASE | Module-level readonly | `MAX_STEPS`, `EPSILON`, `DEVICE` |
+| Boolean | `is/has/should/can_*` | State or condition | `is_valid`, `has_grad`, `should_stop` |
+| Module/Package | lower_snake_case | Function/domain | `models`, `datasets`, `optim` |
+| File name | lower_snake_case | Matches main purpose | `train.py`, `eval.py` |
+| Temp variable | Meaningful abbreviation | Avoid `tmp1/tmp2` | `buf`, `acc`, `grad_norm` |
+| Loop counter | Conventional | Short but clear | `i`, `idx`, `step`, `epoch` |
 
 ---
 

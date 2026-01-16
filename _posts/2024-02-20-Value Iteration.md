@@ -15,22 +15,22 @@ Value Iteration is an iterative algorithm that combines policy evaluation and po
 
 **Steps of Value Iteration**:
 1. **Initialization**:
-   - Start with an arbitrary value function $V_0$.
+   - Start with an arbitrary value function $$V_0$$.
 
 2. **Value Update**:
    - Iteratively update the value function using the Bellman optimality equation:
-    $$V_{k+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} P(s'|s, a) \left[ R(s, a, s') + \gamma V_k(s') \right]$$
+    $$V_{k+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} P(s' \mid s, a) \left[ R(s, a, s') + \gamma V_k(s') \right]$$
 
 3. **Convergence Check**:
    - Repeat the value update step until the value function converges, i.e., the change in value function is below a small threshold.
 
 4. **Derive Policy**:
    - Once the value function has converged, derive the optimal policy:
-    $$\pi^*(s) = \arg\max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} P(s'|s, a) \left[ R(s, a, s') + \gamma V^*(s') \right]$$
+    $$\pi^*(s) = \arg\max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} P(s' \mid s, a) \left[ R(s, a, s') + \gamma V^*(s') \right]$$
 
 **Pros**:
 - **Simple and Direct**: Combines policy evaluation and improvement in a single step.
-- **Guaranteed Convergence**: Guaranteed to converge to the optimal value function$V^*$.
+- **Guaranteed Convergence**: Guaranteed to converge to the optimal value function $$V^*$$.
 
 **Cons**:
 - **Computationally Intensive**: Can be computationally expensive due to the need to update the value function for all states in each iteration.
@@ -46,25 +46,25 @@ To prove the convergence of Value Iteration, we use the contraction mapping theo
 A function $$T$$ is a contraction mapping if there exists a constant $$0 \leq \gamma < 1$$ such that for any two functions $$V$$ and $$V'$$:
 $$\| T(V) - T(V') \|_{\infty} \leq \gamma \| V - V' \|_{\infty}$$
 where $$\| \cdot \|_{\infty}$$ denotes the sup norm:
-$$\| V \|_{\infty} = \max_{s \in \mathcal{S}} |V(s)|$$
+$$\| V \|_{\infty} = \max_{s \in \mathcal{S}} \lvert V(s) \rvert$$
 #### Proof
 
 1. **Bellman Optimality Operator**:
    Consider the Bellman optimality operator $$T$$:
-  $$T(V)(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} P(s'|s, a) \left[ R(s, a, s') + \gamma V(s') \right]$$
+  $$T(V)(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} P(s' \mid s, a) \left[ R(s, a, s') + \gamma V(s') \right]$$
 
 2. **Contraction Property**:
    Let $$V$$ and $$V'$$ be two arbitrary value functions. Then:
-  $$|T(V)(s) - T(V')(s)| = \left| \max_{a} \sum_{s'} P(s'|s, a) [R(s, a, s') + \gamma V(s')] - \max_{a} \sum_{s'} P(s'|s, a) [R(s, a, s') + \gamma V'(s')] \right|$$
+  $$\lvert T(V)(s) - T(V')(s) \rvert = \left\lvert \max_{a} \sum_{s'} P(s' \mid s, a) [R(s, a, s') + \gamma V(s')] - \max_{a} \sum_{s'} P(s' \mid s, a) [R(s, a, s') + \gamma V'(s')] \right\rvert$$
 
    Since the maximum of a set of values is always greater than or equal to the average value in the set, we can write:
-  $$|T(V)(s) - T(V')(s)| \leq \max_{a} \left| \sum_{s'} P(s'|s, a) \gamma [V(s') - V'(s')] \right|$$
+  $$\lvert T(V)(s) - T(V')(s) \rvert \leq \max_{a} \left\lvert \sum_{s'} P(s' \mid s, a) \gamma [V(s') - V'(s')] \right\rvert$$
 
    Using the linearity of expectation and the fact that the transition probabilities $$P(s'|s, a)$$ sum to 1, we get:
-  $$|T(V)(s) - T(V')(s)| \leq \gamma \sum_{s'} P(s'|s, a) |V(s') - V'(s')|$$
+  $$\lvert T(V)(s) - T(V')(s) \rvert \leq \gamma \sum_{s'} P(s' \mid s, a) \lvert V(s') - V'(s') \rvert$$
 
    By the definition of the sup norm:
-  $$|T(V)(s) - T(V')(s)| \leq \gamma \| V - V' \|_{\infty}$$
+  $$\lvert T(V)(s) - T(V')(s) \rvert \leq \gamma \| V - V' \|_{\infty}$$
 
    Since this holds for all states $$s$$, we have:
   $$\| T(V) - T(V') \|_{\infty} \leq \gamma \| V - V' \|_{\infty}$$
